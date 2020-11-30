@@ -66,4 +66,4 @@ def short(short_url):
     else:
         return "<h1>Url Doesnot Exist</h1>"
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run()
