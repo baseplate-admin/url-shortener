@@ -6,44 +6,87 @@
     <title>{% block title %}{% endblock %}</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-    <link  rel="stylesheet" href="{{ url_for('static', filename='css/cover.css') }}">
     <style>
-        background-image: url({{ url_for('static', filename='img/45f5d09bbf47aa81da0156929a6bb141.jpg') }});
+                body {
+          padding-top: 5rem;
+        }
+        .starter-template {
+          padding: 3rem 1.5rem;
+          text-align: center;
+        }
     </style>
+<!--
+    <style>
+        .footer{
+            position: fixed;
+            color: white;
+            height: 30px;
+            left: 0;
+            bottom: 0;
+            background: #222;
+            text-align: center;
+
+        }
+    </style>
+-->
+
+    <style>
+    .footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background-color: #222;
+          color: white;
+          text-align: center;
+          height: 30px;
+    }
+    </style>
+
+
 </head>
 
 <body>
 <body class="text-center">
 
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">UShort</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="/">Home</a>
-          </nav>
-        </div>
-      </header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="https://github.com/baseplate-admin/url-shortener">Link shortener</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="container-fluid">
-            <h1>{% block headerblock %}{% endblock %}</h1>
-            <hr>
-                {% block content %}
-                {% endblock %}
-        </div>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+
+      <div class="starter-template card mx-auto">
+          {% block content %}
+          {% endblock %}
+      </div>
+
+    </main><!-- /.container -->
 
 
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-        </div>
-      </footer>
-    </div>
+
+    <footer>
+        <div class="footer"><center>Made By Bootstrap</center></div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='vendor/jquery-3.5.1.js') }}" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='vendor/jquery-3.5.1.js') }}"><\/script>')</script>
+    <script src="{{ url_for('static', filename='vendor/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootsytap.js') }}"></script>
+
 
 </body>
-
-
 </html>
-<!--
-
--->
