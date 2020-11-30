@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %} All URLS {% endblock %}
+
+{% block content %}
+    {% for files in all_url_in_database %}
+        <p><strong>Short:{{ files.short }}, Long Url: {{ files.long }}</strong></p>
+    {% endfor %}
+{% endblock %}

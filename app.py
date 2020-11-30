@@ -1,11 +1,11 @@
 from flask import Flask
 from flask import render_template
-from flask import request
 from flask_sqlalchemy import SQLAlchemy
 import string
 import random
 from flask import redirect
 from flask import url_for
+from flask import request
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
@@ -29,7 +29,7 @@ class Database(db.Model):
 def shorten_url():
     letters = string.ascii_lowercase + string.ascii_uppercase
     while True:
-        rand_letters = random.choices(letters, k=10)
+        rand_letters = random.choices(letters, k=5)
         rand_letters = "".join(rand_letters)
         short_url = Database.query.filter_by(short=rand_letters).first()
         if not short_url:
@@ -65,5 +65,9 @@ def short(short_url):
         return redirect(long_url.long)
     else:
         return "<h1>Url Doesnot Exist</h1>"
+
+@app.route('/all')
+def show_all():
+    return render_template('all_urls.html', all_url_in_database=Database.query.all())
 if __name__ == '__main__':
     app.run()
