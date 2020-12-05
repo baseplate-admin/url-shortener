@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 {% block title %} Url Shortener {% endblock %}
 {% block content %}
+
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Ushort(A new Url Shortener)</h1>
         <p class="lead">This project is powered by Flask and Bootstrap</p>
         <p class="lead">
             <form action="/" method="post">
             <label for="url">Enter URL:</label>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="url" name="url_request" id="url" placeholder="https://example.com" pattern="https://.*" required>
 
             <input type="submit" value="Submit" class="btn btn-dark">
-        </form>
-        </p>
+            </form>
       </main>
+
 
 
 {% endblock %}

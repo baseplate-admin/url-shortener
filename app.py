@@ -6,10 +6,21 @@ import random
 from flask import redirect
 from flask import url_for
 from flask import request
+from flask_wtf.csrf import CSRFProtect
+import os
+from flask import session
+
+
+
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+csrf = CSRFProtect(app)
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+
 
 db = SQLAlchemy(app)
 
@@ -21,6 +32,7 @@ class Database(db.Model):
     def __init__(self, long, short):
         self.long = long
         self.short = short
+
 # @app.route('/')
 # def hello_world():
 #     return 'Hello World!'
@@ -52,6 +64,7 @@ def home():
             new_url = Database(url_received, short_url)
             db.session.add(new_url)
             db.session.commit()
+            session.clear()
             return redirect(url_for('display_url',url=short_url))
     else:
         return render_template("home.html")
